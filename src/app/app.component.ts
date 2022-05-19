@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RestService } from './service/rest.service';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +12,26 @@ export class AppComponent {
   title = 'algodomain';
 
   loginForm: any;
-
+  constructor(private _rest:RestService, private router:Router) { }
   ngOnInit(): void {
     this.loginForm = new FormGroup ({
-      username: new FormControl (['', Validators.required]),
-      password: new FormControl (['', Validators.required])
+      Email_Id: new FormControl (['']),
+      Password: new FormControl ([''])
     });
 }
 
 login() {
-  console.log(this.loginForm.value);
+  if(this.loginForm.valid){
+    this._rest.userLogin(this.loginForm.value).subscribe(
+      (data) => {
+        console.log(data);
+        this.loginForm.reset();
+        this.router.navigate(['/home']);
+        alert("thank you");
+      }
+    );
+  }
+
 }
 
 }
