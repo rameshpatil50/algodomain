@@ -21,13 +21,14 @@ export class AppComponent {
 }
 
 login() {
+  console.log(this.loginForm.value);
   if(this.loginForm.valid){
     this._rest.userLogin(this.loginForm.value).subscribe(
       (data) => {
         console.log(data);
+        alert("thank you");
         this.loginForm.reset();
         this.router.navigate(['/home']);
-        alert("thank you");
       }
     );
   }
