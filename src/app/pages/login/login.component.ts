@@ -17,6 +17,11 @@ export class LoginComponent implements OnInit {
       Email_Id: new FormControl (['']),
       Password: new FormControl ([''])
     });
+    //Function for redirecting to home page if localstorage has data
+    if(localStorage.getItem('user')){
+      this.router.navigate(['/home']);
+    }
+    
 }
 
 login() {
@@ -24,12 +29,13 @@ login() {
   if(this.loginForm.valid){
     this._rest.userLogin(this.loginForm.value).subscribe(
       (data) => {
+        //save data to localstorage
+        localStorage.setItem('user', JSON.stringify(data));
         console.log(data);
         this.loginForm.reset();
         this.router.navigate(['/home']);
       }
     );
   }
-
 }
 }
