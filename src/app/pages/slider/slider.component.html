@@ -147,7 +147,7 @@
                         }
                     }
                 }'>
-                <div *ngFor="let product of products;let i = index;let catagory of catagory" class="product product-2">
+                <div *ngFor="let product of _rest.products;let i = index;" class="product product-2">
                     <figure class="product-media">
                         <a href="product.html">
                             <img src="{{product['Images']}}" alt="Product image" class="product-image">
