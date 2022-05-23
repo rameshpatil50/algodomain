@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from 'src/app/service/rest.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-wishlist',
+  templateUrl: './wishlist.component.html',
+  styleUrls: ['./wishlist.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class WishlistComponent implements OnInit {
 
+  
   constructor(public _rest:RestService) { }
 
   ngOnInit(): void {
+    this._rest.getWishList();
   }
 
 }

@@ -11,9 +11,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: any;
+  signUpForm: any;
   constructor(private _rest:RestService, private router:Router) { }
   ngOnInit(): void {
     this.loginForm = new FormGroup ({
+      Email_Id: new FormControl (['']),
+      Password: new FormControl ([''])
+    });
+    this.signUpForm = new FormGroup ({
       Email_Id: new FormControl (['']),
       Password: new FormControl ([''])
     });
@@ -21,11 +26,10 @@ export class LoginComponent implements OnInit {
     if(localStorage.getItem('user')){
       this.router.navigate(['/home']);
     }
-    
 }
 
 login() {
-  console.table(this.loginForm.value);
+  console.log(this.loginForm.value);
   if(this.loginForm.valid){
     this._rest.userLogin(this.loginForm.value).subscribe(
       (data) => {
@@ -38,4 +42,18 @@ login() {
     );
   }
 }
+
+signUp() {
+  console.log(this.signUpForm.value);
+  if(this.signUpForm.valid){
+    this._rest.userSignUp(this.signUpForm.value).subscribe(
+      (data) => {
+        console.log(data);
+        this.signUpForm.reset();
+        this.router.navigate(['/home']);
+      }
+    );
+  }
+}
+
 }

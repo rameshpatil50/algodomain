@@ -37,15 +37,15 @@
                 </form>
             </div><!-- .End .tab-pane -->
             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                <form action="#">
+                <form [formGroup]="signUpForm" (submit)="signUp()">
                     <div class="form-group">
                         <label for="register-email">Your email address *</label>
-                        <input type="email" class="form-control" id="register-email" name="register-email" required>
+                        <input type="email" formControlName="Email_Id" class="form-control" id="register-email" name="register-email" required>
                     </div><!-- End .form-group -->
 
                     <div class="form-group">
                         <label for="register-password">Password *</label>
-                        <input type="password" class="form-control" id="register-password" name="register-password" required>
+                        <input type="password" formControlName="Password" class="form-control" id="register-password" name="register-password" required>
                     </div><!-- End .form-group -->
 
                     <div class="form-footer">
