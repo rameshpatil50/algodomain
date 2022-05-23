@@ -12,7 +12,7 @@ export class WishlistComponent implements OnInit {
   constructor(public _rest:RestService) { }
 
   ngOnInit(): void {
-    this._rest.getWishList();
+    
   }
 
 }
